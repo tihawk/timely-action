@@ -17,11 +17,19 @@ app.get("/", function (request, response) {
 });
 
 app.get('/:date', function (req, res){
+  //get input url and make
   var input = req.params.date;
-  //var date = new Date(input);
-  var date = new Date(input).getTime();
+  var date = new Date(input);
+  
+  var formatter = new Intl.DateTimeFormat("en-US", { month: "long" })
+  var  month1 = formatter.format(new Date(date));
+  
+  /*var response = {
+    "natural": date.getDay() + ' ' + date.getMonth()+1) + ', ' + date.getYear()
+  };*/
+  //var date = new Date(input).getTime();
   console.log(input);
-  res.send(date);
+  res.send(month1);
 });
 
 /*app.get("/dreams", function (request, response) {
