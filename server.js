@@ -17,19 +17,22 @@ app.get("/", function (request, response) {
 });
 
 app.get('/:date', function (req, res){
-  //get input url and make
+  //get input url
   var input = req.params.date;
+  //attempt to make a date
   var date = new Date(input);
-  
+  //create a formatter for the month name
   var formatter = new Intl.DateTimeFormat("en-US", { month: "long" })
-  var  month1 = formatter.format(new Date(date));
+  //apply to get month
+  var  monthName = formatter.format(new Date(input));
   
-  /*var response = {
-    "natural": date.getDay() + ' ' + date.getMonth()+1) + ', ' + date.getYear()
-  };*/
+  var response = {
+    "natural": date.getDate() + ' of ' + monthName + ', ' + date.getFullYear(),
+    "unixtime": date.getTime()/1000
+  };
   //var date = new Date(input).getTime();
   console.log(input);
-  res.send(month1);
+  res.send(response);
 });
 
 /*app.get("/dreams", function (request, response) {
