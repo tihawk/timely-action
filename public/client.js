@@ -7,17 +7,19 @@
 $(function() {
   console.log('hello world :o');
   
-  $.get('/dreams', function(dreams) {
+  /*$.get('/dreams', function(dreams) {
     dreams.forEach(function(dream) {
       $('<li></li>').text(dream).appendTo('ul#dreams');
     });
-  });
+  });*/
 
   $('form').submit(function(event) {
     event.preventDefault();
-    var dream = $('input').val();
-    $.post('/dreams?' + $.param({dream: dream}), function() {
-      $('<li></li>').text(dream).appendTo('ul#dreams');
+    var time = $('input').val();
+    $.get(('/'+ time), function(response) {
+      console.log(response);
+      /*$("ul#dream").html("<li>natural: "response[natural]"</li>");*/
+      /*$('<li></li>').text(dream).appendTo('ul#dreams');*/
       $('input').val('');
       $('input').focus();
     });

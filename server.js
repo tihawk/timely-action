@@ -21,10 +21,11 @@ function timeService(input){
   if(Number(input)==input) {input *= 1000;}
   //attempt to make a date
   var date = new Date(input);
+  console.log(date);
   //create a formatter for the month name
   var formatter = new Intl.DateTimeFormat("en-US", { month: "long" })
   //apply to get month
-  var  monthName = formatter.format(new Date(input));
+  var  monthName = formatter.format(new Date(date));
   
   var response = {
     "natural": date.getDate() + ' of ' + monthName + ', ' + date.getFullYear(),
