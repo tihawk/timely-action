@@ -17,8 +17,11 @@ app.get("/", function (request, response) {
 });
 
 app.get('/:date', function (req, res){
-  var input = req.body;
-  re
+  var input = req.params.date;
+  //var date = new Date(input);
+  var date = new Date(input).getTime();
+  console.log(input);
+  res.send(date);
 });
 
 /*app.get("/dreams", function (request, response) {
