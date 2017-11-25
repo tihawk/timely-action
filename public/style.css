@@ -80,3 +80,9 @@ footer > a {
 .nicejob {
   text-decoration: line-through;
 }
+
+.example{
+  background-color:pink;
+  color:maroon;
+  font-family:monospace;
+}

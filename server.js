@@ -21,18 +21,23 @@ function timeService(input){
   if(Number(input)==input) {input *= 1000;}
   //attempt to make a date
   var date = new Date(input);
-  console.log(date.getTime()/1000);
+  console.log(parseInt(date.getTime()/1000));
   //create a formatter for the month name
   var formatter = new Intl.DateTimeFormat("en-US", { month: "long" })
   //apply to get month
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   var  monthName = months[date.getMonth()];
-  
-  var response = {
-    "natural": date.getDate() + ' of ' + monthName + ', ' + date.getFullYear(),
-    "unixtime": date.getTime()/1000
-  };
-  
+  if(monthName!==undefined){
+    var response = {
+      "natural": date.getDate() + ' of ' + monthName + ', ' + date.getFullYear(),
+      "unixtime": date.getTime()/1000
+    };   
+  } else {
+    var response = {
+      "natural": null,
+      "unixtime": null
+    }
+  }
   return response;
 }
 
