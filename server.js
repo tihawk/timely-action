@@ -21,11 +21,12 @@ function timeService(input){
   if(Number(input)==input) {input *= 1000;}
   //attempt to make a date
   var date = new Date(input);
-  console.log(date);
+  //console.log(date);
   //create a formatter for the month name
   var formatter = new Intl.DateTimeFormat("en-US", { month: "long" })
   //apply to get month
-  var  monthName = formatter.format(new Date(date));
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  var  monthName = months[date.getMonth()];
   
   var response = {
     "natural": date.getDate() + ' of ' + monthName + ', ' + date.getFullYear(),
@@ -37,8 +38,7 @@ function timeService(input){
 
 app.get('/:date', function (req, res){
   //get input url
-  var input = req.params.date;
-  
+  var input = req.params.date;  
   res.send(timeService(input));
 });
 
