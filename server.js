@@ -16,9 +16,9 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.get('/:date', function (req, res){
-  //get input url
-  var input = req.params.date;
+function timeService(input){
+  //if input is in unix time, multiply by 1000 before making a date object
+  if(Number(input)==input) {input *= 1000;}
   //attempt to make a date
   var date = new Date(input);
   //create a formatter for the month name
@@ -30,27 +30,16 @@ app.get('/:date', function (req, res){
     "natural": date.getDate() + ' of ' + monthName + ', ' + date.getFullYear(),
     "unixtime": date.getTime()/1000
   };
-  //var date = new Date(input).getTime();
-  console.log(input);
-  res.send(response);
+  
+  return response;
+}
+
+app.get('/:date', function (req, res){
+  //get input url
+  var input = req.params.date;
+  
+  res.send(timeService(input));
 });
-
-/*app.get("/dreams", function (request, response) {
-  response.send(dreams);
-});*/
-
-// could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
-/*app.post("/dreams", function (request, response) {
-  dreams.push(request.query.dream);
-  response.sendStatus(200);
-});*/
-
-// Simple in-memory store for now
-/*var dreams = [
-  "Find and count some sheep",
-  "Climb a really tall mountain",
-  "Wash the dishes"
-];*/
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
