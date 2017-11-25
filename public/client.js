@@ -14,12 +14,12 @@ $(function() {
   });*/
 
   $('form').submit(function(event) {
-    //event.preventDefault();
+    event.preventDefault();
     var time = $('input').val();
-    console.log(time);
+    //alert(time);
     $.get(('/'+ time), function(response) {
-      console.log(response);
-      $("ul#dream").html("<li>natural: " + response["natural"] + "</li>");
+      //alert(response['natural']);
+      $("#dreams").html("<li>natural: " + response["natural"] + "</li><li>unixtime: " + response["unixtime"] + "</li>" );
       /*$('<li></li>').text(dream).appendTo('ul#dreams');*/
       $('input').val('');
       $('input').focus();

@@ -21,7 +21,7 @@ function timeService(input){
   if(Number(input)==input) {input *= 1000;}
   //attempt to make a date
   var date = new Date(input);
-  //console.log(date);
+  console.log(date.getTime()/1000);
   //create a formatter for the month name
   var formatter = new Intl.DateTimeFormat("en-US", { month: "long" })
   //apply to get month
